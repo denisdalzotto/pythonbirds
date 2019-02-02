@@ -1,16 +1,19 @@
 class Pessoa:
-    def __init__(self, nome=None, idade=33):
+    def __init__(self, *filhos, nome=None, idade=33):
         self.idade = idade
         self.nome = nome
+        self.filhos = list(filhos)
+
     def cumprimentar(self):
         return f'Olá {id(self)}'
 
 if __name__ == '__main__':
-    p = Pessoa('Lucas')
-    print(Pessoa.cumprimentar(p))
-    print(id(p))
-    print(p.cumprimentar())
-    print(p.nome)
-    p.nome = 'Denis'
-    print(p.nome)
-    print(p.idade)
+    denis = Pessoa(nome='Denis')
+    lucas = Pessoa(denis, nome='lucas')
+    print(Pessoa.cumprimentar(lucas))
+    print(id(lucas))
+    print(lucas.cumprimentar()) # esse código é igual ao da linha 12.
+    print(lucas.nome)
+    print(lucas.idade)
+    for filhos in lucas.filhos:
+        print(filhos.nome)
